@@ -128,14 +128,17 @@ def function_choice():
     3 Censor all phrases in given list from text, AFTER the first two occurrences of any phrase
     4 Censor all phrases in given list from text, AND each word either side of the phrase
     \n''')
+    original_header = '\n\n::::::::::::::: Original email :::::::::::::::\n\n'
+    censored_header = '\n\n::::::::::::::: Censored email :::::::::::::::\n\n'
+    email = choose_email()
     if user_choice == '1':
-        print('\n', censor_phrase(choose_email(), 'learning algorithm'))
+        print(original_header + email + censored_header + 'Censoring: \'learning algorithm\'\n\n' + censor_phrase(email, 'learning algorithm'))
     elif user_choice == '2':
-        print('\n', censor_from_list(choose_email(), proprietary_terms))
+        print(original_header + email + censored_header + 'Censoring: {}\n\n'.format(proprietary_terms) + censor_from_list(email, proprietary_terms))
     elif user_choice == '3':
-        print('\n', censor_after_two(choose_email(), negative_words))
+        print(original_header + email + censored_header + 'Censoring: {}\n\n'.format(negative_words) + censor_after_two(email, negative_words))
     elif user_choice == '4':
-        print('\n', censor_either_side(choose_email(), proprietary_terms + negative_words))
+        print(original_header + email + censored_header + 'Censoring: {}\n\n'.format(proprietary_terms + negative_words) + censor_either_side(email, proprietary_terms + negative_words))
 
 def choose_email():
     user_choice = input('''
